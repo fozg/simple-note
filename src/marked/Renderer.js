@@ -53,11 +53,12 @@ module.exports = class Renderer {
         + ' id="'
         + this.options.headerPrefix
         + slugger.slug(raw)
-        + '">'
+        + '"><span>'
+        + Array(level).fill(0).map(i => "#").join('') + '</span> '
         + text
         + '</h'
         + level
-        + '>\n';
+        + '>';
     }
     // ignore IDs
     return '<h' + level + '>' + text + '</h' + level + '>\n';
@@ -74,15 +75,11 @@ module.exports = class Renderer {
   }
 
   listitem(text) {
-    return '<li>' + text + '</li>\n';
+    return '<li><span>-</span> ' + text + '</li>';
   }
 
   checkbox(checked) {
-    return '<input '
-      + (checked ? 'checked="" ' : '')
-      + 'disabled="" type="checkbox"'
-      + (this.options.xhtml ? ' /' : '')
-      + '> ';
+    return checked ? '<span class="cb">[<b>x</b>]</span> ' : '<span class="cb">[ ]</span> ';
   }
 
   paragraph(text) {
@@ -161,6 +158,6 @@ module.exports = class Renderer {
   }
 
   text(text) {
-    return text;
+    return  text;
   }
 };

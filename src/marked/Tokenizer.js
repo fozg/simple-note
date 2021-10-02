@@ -426,9 +426,9 @@ module.exports = class Tokenizer {
       const token = {
         type: 'paragraph',
         raw: cap[0],
-        text: cap[1].charAt(cap[1].length - 1) === '\n'
-          ? cap[1].slice(0, -1)
-          : cap[1],
+        text: cap[0].charAt(cap[0].length - 1) === '\n'
+          ? cap[0].slice(0, -1)
+          : cap[0],
         tokens: []
       };
       this.lexer.inline(token.text, token.tokens);
