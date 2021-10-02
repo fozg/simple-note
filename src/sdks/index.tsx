@@ -5,7 +5,7 @@ type Props = {
   liveTitle: any;
 };
 export default function ({ root, liveTitle }: Props) {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(1);
   return (
     <>
       <div style={styles.menuWrap}>
