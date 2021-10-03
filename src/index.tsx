@@ -15,6 +15,7 @@ if (process.env.NODE_ENV !== "production") {
     (function (AppManager) {
         AppManager.register({
             appId: process.env.REACT_APP_MICRO_APP_NAME,
+            root: true,
             renderRoot: (elementId: string) => {
                 ReactDOM.render(<Root />, document.getElementById(elementId));
             },

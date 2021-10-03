@@ -9029,10 +9029,10 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
 
-react-light-state@^0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/react-light-state/-/react-light-state-0.0.12.tgz#adc3701bb329a3ab6143c36366c0c6d774a6cf3f"
-  integrity sha512-dR6KYlxtAvJmnvVc69tyb3C3lBn50l+bjMN9Iw+dI6aU+mCNam5iqwUgwbCVIOhQj+BzU6617wu20Xxc+2hlgQ==
+react-light-state@^0.0.15:
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/react-light-state/-/react-light-state-0.0.15.tgz#fdf49843278cb4e581c0360bf73513e473bf4d16"
+  integrity sha512-Ew6CtQ8Bhqk1cxvAbWp9WcAFY8NQwBhV/m2d1G2pAhgf1r1GjzQHyL99w+HH8tobYld/lpHacISq219qEacTcQ==
   dependencies:
     shallowequal "^1.1.0"
 

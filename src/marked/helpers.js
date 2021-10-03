@@ -248,7 +248,7 @@ function repeatString(pattern, count) {
   return result + pattern;
 }
 
-module.exports = {
+export {
   escape,
   unescape,
   edit,

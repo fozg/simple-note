@@ -1,122 +1,43 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import marked from "./marked/marked";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Editor from "./components/Editor";
+import Sidebar from "./components/Sidebar";
+import { useStore, notesSelector } from "./state";
 
 export default function () {
-    const [md, setMd] = useState("");
-    const onInput = (e: any) => {
-        const html = e.target.value;
-        const plantText = html.replace(/\n\n/g, "\n").replace(/  /g, " ");
-        setMd(plantText);
-    };
+    const notes = useStore(notesSelector);
     return (
-        <Overflow>
-            <Editor>
-                <Input
-                    style={{
-                        padding: 20,
-                        fontFamily: "consolas",
-                        fontSize: 16,
-                    }}
-                    spellCheck={false}
-                    onInput={onInput}
-                    value={md}
-                ></Input>
-                <Display
-                    style={{
-                        width: 500,
-
-                        fontFamily: "consolas",
-                        padding: 20,
-                        fontSize: 16,
-                        margin: "auto",
-                    }}
-                    spellCheck={false}
-                    dangerouslySetInnerHTML={{
-                        __html: marked(md.replace(/\n/g, "\n\n")),
-                    }}
-                ></Display>
-            </Editor>
-        </Overflow>
+        <BrowserRouter
+            basename={
+                process.env.NODE_ENV === "production" ? "/simple-note/" : "/"
+            }
+        >
+            <Layout>
+                <Left>
+                    <Sidebar notes={notes} />
+                </Left>
+                <Right>
+                    <Switch>
+                        <Route path="/new" component={Editor} />
+                        <Route path="/:id" component={Editor} />
+                    </Switch>
+                </Right>
+            </Layout>
+        </BrowserRouter>
     );
 }
 
-const Overflow = styled.div`
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 500px;
-    width: 500px;
-    margin: auto;
-`;
-const Editor = styled.div`
-    position: relative;
-    width: 500px;
+const Layout = styled.div`
+    display: flex;
     height: 100%;
-    margin: auto;
-    span {
-        color: #ff572282;
-    }
-    code {
-        background: #eee;
-        border-radius: 5px;
-        color: #f44336;
-        margin: 0 -5px;
-        padding: 0 5px;
-    }
-    pre {
-        background: #eee;
-        border-radius: 5px;
-    }
-    h1,
-    h2,
-    h3,
-    h4,
-    h5 {
-        // display: inline;
-        font-size: 16px;
-        margin: 0;
-        padding: 0;
-        color: #f34d1a;
-        span {
-            color: #ff572282;
-        }
-    }
-    ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    }
-    li {
-        div {
-            display: inline;
-        }
-        color: #009688;
-    }
-    span.cb {
-        color: #ccc;
-        b {
-            color: red;
-        }
-    }
+    background: #f9f9f9;
 `;
-const Input = styled.textarea`
-    border: none;
-    position: absolute;
-    background: transparent;
-    outline: none;
-    color: rgba(0, 0, 0, 0);
-    caret-color: #000;
-    caret-width: 3px;
-    z-index: 10;
-    left: 0;
-    width: 100%;
-    resize: none;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+const Left = styled.div`
+    border-right: 1px solid #ececec;
+    width: 300px;
 `;
-const Display = styled.div`
-    position: relative;
-    z-index: 9;
+const Right = styled.div`
+    padding: 20px;
+    height: 100%;
 `;

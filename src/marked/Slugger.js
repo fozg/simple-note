@@ -1,7 +1,7 @@
 /**
  * Slugger generates header id
  */
-module.exports = class Slugger {
+export default class Slugger {
   constructor() {
     this.seen = {};
   }
